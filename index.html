@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>FIT LIFE GYM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #1e293b;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: none;
+      justify-content: space-around;
+      background: #334155;
+      padding: 0.5rem;
+    }
+
+    nav button {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 1rem;
+    }
+
+    .section {
+      display: none;
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem auto;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .card {
+      margin-top: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid #eee;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    label, select, input {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button.reserve-btn, .login-btn {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #1e293b;
+      color: white;
+    }
+
+    h2 {
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>FIT LIFE GYM</h1>
+  </header>
+
+  <nav id="nav">
+    <button onclick="mostrar('inicio')">Inicio</button>
+    <button onclick="mostrar('reservar')">Clases</button>
+    <button onclick="mostrar('entrenadores')">Entrenadores</button>
+    <button onclick="mostrar('progreso')">Progreso</button>
+    <button onclick="mostrar('planes')">Planes</button>
+  </nav>
+
+  <main>
+    <!-- Login / Registro -->
+    <section id="login" class="section active">
+      <h2>Inicia sesión</h2>
+      <label>Correo electrónico:</label>
+      <input type="email" id="correoLogin" required />
+      <label>Contraseña:</label>
+      <input type="password" id="claveLogin" required />
+      <button class="login-btn" onclick="iniciarSesion()">Entrar</button>
+      <p id="login-mensaje"></p>
+
+      <hr style="margin: 2rem 0;">
+
+      <h2>¿No tienes cuenta? Regístrate</h2>
+      <label>Correo nuevo:</label>
+      <input type="email" id="correoRegistro" required />
+      <label>Contraseña nueva:</label>
+      <input type="password" id="claveRegistro" required />
+      <button class="reserve-btn" onclick="registrarUsuario()">Crear cuenta</button>
+      <p id="registro-mensaje"></p>
+    </section>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="section">
+      <h2>Bienvenido a FIT LIFE GYM</h2>
+      <p>Gestiona tus clases, entrena con expertos y alcanza tus metas.</p>
+    </section>
+
+    <!-- Sección Reservar -->
+    <section id="reservar" class="section">
+      <h2>Clases Disponibles</h2>
+
+      <div class="card">
+        <img src="https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2021/11/pexels-yan-krukov-8436601-copy-768x576.jpg" alt="Yoga">
+        <div class="card-body">
+          <h3>Yoga</h3>
+          <p>Relaja cuerpo y mente con nuestras clases de yoga guiadas.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7ZjxzNO7IDiobT4zSD4hzk-qxpx5M8quP8p73YB9RX2B7QX8ghXapTFIuDJ7w55McpKo&usqp=CAU" alt="Spinning">
+        <div class="card-body">
+          <h3>Spinning</h3>
+          <p>Clases intensas para quemar calorías al ritmo de la música.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4trp93ew_sWubIj6q62uUjY1CTC5FPIBvBb1kxS8O4cjC6bUStMgcaqPOCZv39SRpgoM&usqp=CAU" alt="Crossfit">
+        <div class="card-body">
+          <h3>CrossFit</h3>
+          <p>Entrenamiento funcional de alta intensidad para todos los niveles.</p>
+        </div>
+      </div>
+
+      <label>Selecciona clase:</label>
+      <select id="clase">
+        <option>Yoga</option>
+        <option>Spinning</option>
+        <option>Crossfit</option>
+      </select>
+      <label>Hora:</label>
+      <input type="time" id="hora" />
+      <button class="reserve-btn" onclick="reservar()">Reservar Clase</button>
+      <p id="mensaje"></p>
+    </section>
+
+    <!-- Sección Entrenadores -->
+    <section id="entrenadores" class="section">
+      <h2>Entrenadores</h2>
+
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRjnQxcZlBpksF2yNxKjW2VvEbmAUJzFBIMEXBh-jobABSxfTLzwcDWsksYWhROksCzNc&usqp=CAU" alt="Andrés">
+        <div class="card-body">
+          <h3>Andrés</h3>
+          <p>Disponible: 8am - 12pm</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdz8JHQBz-XnVSbOpaG8x7avSaxDi25mWK-nGp0LRHrqszPRxq3pxDfiBc7LzjuzE2nR4&usqp=CAU" alt="Camila">
+        <div class="card-body">
+          <h3>Camila</h3>
+          <p>Disponible: 2pm - 6pm</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdfnW0M_3LwLSr79l_X4ASIr9ndtr9t1awLypt5S_daEHGkgQ2Q3ikPK4TOko5nEMGeig&usqp=CAU" alt="Juan">
+        <div class="card-body">
+          <h3>Mariana</h3>
+          <p>Disponible: 6pm - 9pm</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Progreso -->
+    <section id="progreso" class="section">
+      <h2>Tu Progreso</h2>
+      <p>Clases completadas: <strong>8</strong></p>
+      <p>Entrenamientos personales: <strong>3</strong></p>
+      <progress value="11" max="20" style="width:100%;"></progress>
+    </section>
+
+    <!-- Sección Planes -->
+    <section id="planes" class="section">
+      <h2>Planes y Mensualidades</h2>
+
+      <div class="card" style="border: 2px solid #ccc;">
+        <div class="card-body">
+          <h3>💪 Plan Básico</h3>
+          <p><strong>$50.000 / mes</strong></p>
+          <p>✅ Acceso a clases grupales<br>❌ Sin entrenador personal<br>❌ Sin nutricionista</p>
+        </div>
+      </div>
+
+      <div class="card" style="border: 2px solid #60a5fa;">
+        <div class="card-body">
+          <h3>🔥 Plan Plus</h3>
+          <p><strong>$80.000 / mes</strong></p>
+          <p>✅ Clases ilimitadas<br>✅ Entrenador personal<br>❌ Sin nutricionista</p>
+        </div>
+      </div>
+
+      <div class="card" style="border: 3px solid gold; background-color: #fffbea;">
+        <div class="card-body">
+          <h3>🌟 Plan Premium (más popular)</h3>
+          <p><strong style="font-size: 1.3rem; color: #b45309;">$110.000 / mes</strong></p>
+          <p>✅ Clases + Entrenador personal<br>✅ Nutricionista y seguimiento<br>✅ Asesoría completa</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 FIT LIFE GYM. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const usuarios = [];
+
+    function registrarUsuario() {
+      const correo = document.getElementById('correoRegistro').value;
+      const clave = document.getElementById('claveRegistro').value;
+      const mensaje = document.getElementById('registro-mensaje');
+
+      if (correo && clave.length >= 4) {
+        const existente = usuarios.find(u => u.correo === correo);
+        if (existente) {
+          mensaje.textContent = "⚠️ Este correo ya está registrado.";
+          mensaje.style.color = "red";
+        } else {
+          usuarios.push({ correo, clave });
+          mensaje.textContent = "✅ Usuario registrado correctamente.";
+          mensaje.style.color = "green";
+          document.getElementById('correoRegistro').value = "";
+          document.getElementById('claveRegistro').value = "";
+        }
+      } else {
+        mensaje.textContent = "Por favor ingresa datos válidos.";
+        mensaje.style.color = "red";
+      }
+    }
+
+    function iniciarSesion() {
+      const correo = document.getElementById('correoLogin').value;
+      const clave = document.getElementById('claveLogin').value;
+      const mensaje = document.getElementById('login-mensaje');
+
+      const usuario = usuarios.find(u => u.correo === correo && u.clave === clave);
+      if (usuario) {
+        document.getElementById('login').classList.remove('active');
+        document.getElementById('inicio').classList.add('active');
+        document.getElementById('nav').style.display = 'flex';
+      } else {
+        mensaje.textContent = "Correo o contraseña incorrectos.";
+        mensaje.style.color = "red";
+      }
+    }
+
+    function mostrar(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function reservar() {
+      const clase = document.getElementById('clase').value;
+      const hora = document.getElementById('hora').value;
+      const mensaje = document.getElementById('mensaje');
+
+      if (!hora) {
+        mensaje.textContent = "⚠️ Por favor selecciona una hora.";
+        mensaje.style.color = "red";
+      } else {
+        mensaje.textContent = `✅ Clase de ${clase} reservada para las ${hora}`;
+        mensaje.style.color = "green";
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
